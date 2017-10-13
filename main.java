@@ -1,4 +1,8 @@
 package VisualNovel;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 /**************************************************************
  * @author Allison Bickford
  *
