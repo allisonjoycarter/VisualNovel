@@ -1,4 +1,4 @@
-package VisualNovel;
+//package VisualNovel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
