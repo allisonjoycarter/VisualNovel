@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream:main.java
 package VisualNovel;
-=======
->>>>>>> Stashed changes:src/main.java
 /**************************************************************
  * @author Allison Bickford
  *

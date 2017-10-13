@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream:MainPanel.java
 package VisualNovel;
-=======
-
->>>>>>> Stashed changes:src/MainPanel.java
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
