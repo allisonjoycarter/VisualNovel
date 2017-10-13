@@ -1,0 +1,37 @@
+Welcome to my visual novel framework!
+
+To make your own story as a visual novel:
+This code uses 3 files. StoryLined, Choices, and Results. These files should all be saved in the VisualNovel folder.
+The code reads StoryLined to get lines and display it in the program. However, if it reaches a line that reads "choice"
+it will stop and force the user to make a decision. The program uses the Choice file to label the buttons.
+Also, if there is a line that reads "resultx", where x is a number (so the first would be result1, then result2, etc.)
+the program will refer to the Results file to get a result.
+
+Format of Story file:
+Your Story file should be set up so that any lines that you want to appear for ALL story endings/variations are included.
+When you reach a point in the story where the user needs to make a choice, just make a line that reads "choice"
+in the file and the program will accommodate. Whenever a result needs to be shown, just make a line that reads "resultx"
+(where x starts at 1 and increases for each result).
+
+Format of Choices file:
+Your Choices file should be set up like so:
+FirstSetofChoices1
+FirstSetofChoices2
+
+SecondSetofChoices1
+SecondSetofChoices2
+...and so on.
+The program only accomodates for a file set up in this manner. This means only 2 options should be available
+for each choice. The program sets a value for each line (and puts it into an array) and sets the buttons to the line at
+the value called. So, if the lines are not set up in this manner, they will show incorrectly. This means a line needs
+to be included after each set of choices. It's easier to read if it's blank but you can put text there, the program
+merely skips over it anyway.
+
+Format of Results file:
+
+Troubleshooting:
+
+If your file(s) cannot be found:
+    Make sure the file is saved in the same folder as the program itself. Also make sure the names of these files are
+    the same as the original. That is, "StoryLined", "Choices", and "Results". Make sure there is no ".txt" at the end
+    of the file name.

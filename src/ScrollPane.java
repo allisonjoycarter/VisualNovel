@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream:ScrollPane.java
 package VisualNovel;
+=======
+>>>>>>> Stashed changes:src/ScrollPane.java
 
 import javax.swing.*;
 

@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream:Results.java
 package VisualNovel;
+=======
+>>>>>>> Stashed changes:src/Results.java
 
 import java.io.IOException;
 import java.io.InputStream;
