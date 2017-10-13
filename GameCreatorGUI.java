@@ -7,9 +7,13 @@ import javax.swing.tree.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.*;
 
 public class GameCreatorGUI {
     private JPanel toolbar;
+    private JButton load;
     private JButton newItem;
     private JButton deleteItem;
     private JButton moveUp;
@@ -24,6 +28,9 @@ public class GameCreatorGUI {
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
     private int newNodeSuffix = 1;
     private JTextField input;
+    private String setName;
+    private String nodeName;
+    private JScrollPane treeScrollPane;
 
 
     public GameCreatorGUI() {
@@ -33,18 +40,21 @@ public class GameCreatorGUI {
 
         toolbar = new JPanel();
         toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
+        load = new JButton("Load Game");
         newItem = new JButton("Add Item");
         deleteItem = new JButton("Delete Item");
         moveUp = new JButton("Move Item Up");
         moveDown = new JButton("Move Item Down");
         startOver = new JButton("Start Over");
         done = new JButton("Finished");
+        load.addActionListener(new ButtonListener());
         newItem.addActionListener(new ButtonListener());
         deleteItem.addActionListener(new ButtonListener());
         moveUp.addActionListener(new ButtonListener());
         moveDown.addActionListener(new ButtonListener());
         startOver.addActionListener(new ButtonListener());
         done.addActionListener(new ButtonListener());
+        toolbar.add(load);
         toolbar.add(newItem);
         toolbar.add(deleteItem);
         toolbar.add(moveUp);
@@ -54,11 +64,12 @@ public class GameCreatorGUI {
         creator.add(toolbar, BorderLayout.NORTH);
 
         createTree();
+        setName = new String("Set Name");
 
     }
 
     public void createTree() {
-        rootNode = new DefaultMutableTreeNode("Start");
+        rootNode = new DefaultMutableTreeNode("Set Name");
         treeModel = new DefaultTreeModel(rootNode);
         treeModel.addTreeModelListener(new TreeModelListener());
         tree = new JTree(treeModel);
@@ -66,7 +77,7 @@ public class GameCreatorGUI {
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setShowsRootHandles(true);
 
-        JScrollPane treeScrollPane = new JScrollPane(tree);
+        treeScrollPane = new JScrollPane(tree);
         creator.add(treeScrollPane, BorderLayout.CENTER);
     }
 
@@ -151,13 +162,53 @@ public class GameCreatorGUI {
     class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == newItem) {
-                addObject("New Node " + newNodeSuffix++);
+                addObject(setName);
             } else if (e.getSource() == deleteItem) {
                 removeCurrentNode();
             } else if (e.getSource() == startOver) {
                 clear();
+            } else if (e.getSource() == done) {
+                try {
+                    FileOutputStream file = new FileOutputStream("VisualNovel\\serialisation");
+                    ObjectOutputStream out = new ObjectOutputStream(file);
+                    out.writeObject(tree);
+                    out.close();
+                    file.close();
+                }
+                catch (Exception er) {
+                    er.printStackTrace();
+                }
+            } if (e.getSource() == load) {
+                JTree tree2 = null;
+                try {
+                    FileInputStream file = new FileInputStream("VisualNovel\\serialisation");
+                    ObjectInputStream in = new ObjectInputStream(file);
+                    tree2 = (JTree) in.readObject();
+                    in.close();
+                    file.close();
+                }
+                catch (Exception err) {
+                    err.printStackTrace();
+                }
+                treeScrollPane.add(tree2);
+
             }
         }
+    }
+    //apparently this is obsolete. wooo
+    private String namingNodes() {
+
+
+        nodeName = new String();
+        input = new JTextField(15);
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nodeName = input.getText();
+
+            }
+        });
+        return nodeName;
     }
 
 
