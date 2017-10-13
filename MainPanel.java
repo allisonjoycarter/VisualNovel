@@ -190,7 +190,7 @@ public class MainPanel extends JLayeredPane {
 
         newGame.addActionListener((ActionEvent e) -> {
             JDialog gameCreatorGUI = new GameCreatorGUI().getCreator();
-            gameCreatorGUI.setSize(new Dimension(500,500));
+            gameCreatorGUI.setSize(new Dimension(608,400));
             gameCreatorGUI.setVisible(true);
         });
         createMenu.add(newGame);
