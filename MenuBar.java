@@ -1,4 +1,4 @@
-package Playground.VisualNovel;
+package VisualNovel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

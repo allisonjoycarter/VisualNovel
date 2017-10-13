@@ -1,4 +1,4 @@
-package Playground.VisualNovel;
+package VisualNovel;
 
 import java.io.IOException;
 import java.io.InputStream;

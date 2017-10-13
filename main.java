@@ -1,4 +1,4 @@
-package Playground.VisualNovel;
+package VisualNovel;
 /**************************************************************
  * @author Allison Bickford
  *

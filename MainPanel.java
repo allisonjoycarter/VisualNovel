@@ -1,4 +1,4 @@
-package Playground.VisualNovel;
+package VisualNovel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -24,6 +24,11 @@ public class MainPanel extends JLayeredPane {
     private JMenu menu;
     private JMenuItem restart;
     private JMenuItem quit;
+    private JMenuItem save;
+    private JMenuItem load;
+    private JMenu createMenu;
+    private JMenuItem newGame;
+    private JMenuItem editGame;
     private int index = 0;
     private int choiceIndex = 0;
     private int charIndex = 0;
@@ -164,8 +169,13 @@ public class MainPanel extends JLayeredPane {
     public void menuBar() {
         restart = new JMenuItem("Restart");
         quit = new JMenuItem("Quit");
+        save = new JMenuItem("Save");
+        load = new JMenuItem("Load");
         menu = new JMenu("Game");
         menuBar = new JMenuBar();
+        createMenu = new JMenu("Creation Menu");
+        newGame = new JMenuItem("Create New");
+        editGame = new JMenuItem("Edit Game");
 
         quit.addActionListener((ActionEvent e) ->  {
             int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -178,9 +188,19 @@ public class MainPanel extends JLayeredPane {
             }
         });
 
+        newGame.addActionListener((ActionEvent e) -> {
+            JDialog gameCreatorGUI = new GameCreatorGUI().getCreator();
+            gameCreatorGUI.setSize(new Dimension(500,500));
+            gameCreatorGUI.setVisible(true);
+        });
+        createMenu.add(newGame);
+        createMenu.add(editGame);
         menu.add(restart);
         menu.add(quit);
+        menu.add(save);
+        menu.add(load);
         menuBar.add(menu);
+        menuBar.add(createMenu);
         //simply adding the menubar to boxlayout will align it along the center, so a box is created here
         //alternatively menubar.setAlignmentx(Component.LEFT_ALIGNMENT) should work but it doesn't so, box.
         Box box = Box.createHorizontalBox();
@@ -188,6 +208,7 @@ public class MainPanel extends JLayeredPane {
         box.add(Box.createHorizontalGlue()); //horizontal glue fills in all the empty space next to box
         //so the setup is: edge|box(menu)horizontalgluuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuue|edge
         add(box, 0);
+
 
     }
 
