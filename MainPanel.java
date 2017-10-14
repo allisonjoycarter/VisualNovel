@@ -1,4 +1,4 @@
-package VisualNovel;
+//package VisualNovel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 public class MainPanel extends JLayeredPane {
     private JTextArea text;
