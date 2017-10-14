@@ -21,8 +21,11 @@ public class StoryTree extends JPanel{
         setLayout(new GridLayout(1, 0));
         setName = new String("Set Name");
 
+        treeModel = null;
         rootNode = new DefaultMutableTreeNode("Set Name");
-        treeModel = new DefaultTreeModel(rootNode);
+        if (treeModel == null) {
+            treeModel = new DefaultTreeModel(rootNode);
+        }
         treeModel.addTreeModelListener(new TreeModelListener());
         tree = new JTree(treeModel);
         tree.setEditable(true);
@@ -117,27 +120,29 @@ public class StoryTree extends JPanel{
         try {
             FileOutputStream file = new FileOutputStream("VisualNovel\\serialisation");
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(tree);
+            out.writeObject(treeModel);
+            out.flush();
             out.close();
-            file.close();
         } catch (Exception er) {
             er.printStackTrace();
         }
     }
 
+    final File treeFile = new File("VisualNovel\\serialisation");
 
     public void deserialize() {
-        JTree tree2 = null;
-        try {
-            FileInputStream file = new FileInputStream("VisualNovel\\serialisation");
-            ObjectInputStream in = new ObjectInputStream(file);
-            tree2 = (JTree) in.readObject();
-            in.close();
-            file.close();
-        } catch (Exception err) {
-            err.printStackTrace();
+
+        if (treeFile.exists()) {
+            try {
+//                FileInputStream file = new FileInputStream("VisualNovel\\serialisation");
+                ObjectInputStream in = new ObjectInputStream(new FileInputStream(treeFile));
+                treeModel = (DefaultTreeModel) in.readObject();
+                in.close();
+                System.out.println("Tried To do the thing");
+            } catch (Exception er) {
+                er.printStackTrace();
+            }
         }
-        treeScrollPane.add(tree2);
     }
 
     //apparently this is obsolete. wooo
