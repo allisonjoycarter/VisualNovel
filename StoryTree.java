@@ -118,17 +118,17 @@ public class StoryTree extends JPanel{
 
     public void serialize() {
         try {
-            FileOutputStream file = new FileOutputStream("VisualNovel\\serialisation");
+            FileOutputStream file = new FileOutputStream("VisualNovel//serialisation");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(treeModel);
-            out.flush();
+//            out.flush();
             out.close();
         } catch (Exception er) {
             er.printStackTrace();
         }
     }
 
-    final File treeFile = new File("VisualNovel\\serialisation");
+    final File treeFile = new File("VisualNovel//serialisation");
 
     public void deserialize() {
 
